@@ -89,7 +89,7 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
 
   Widget _buildChatBubble(ChatMessage msg, ThemeData theme, bool isDark) {
     bool isUser = msg.isUser;
-    final botColor = const Color(0xFFF9F9F9); // Light grey/white for bot as seen in image
+    final botColor = isDark ? const Color(0xFF2A2A2A) : const Color(0xFFF9F9F9);
     final userColorSecondary = const Color(0xFF0D47A1); // Blue for some user msgs
     final userColorPrimary = const Color(0xFF001B48); // Dark Navy for main user msgs
 
@@ -105,7 +105,7 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
             bottomRight: isUser ? Radius.zero : const Radius.circular(16),
             bottomLeft: isUser ? const Radius.circular(16) : Radius.zero,
           ),
-          border: isUser ? null : Border.all(color: Colors.grey.withOpacity(0.1)),
+          border: isUser ? null : Border.all(color: isDark ? Colors.white12 : Colors.grey.shade200),
           boxShadow: [
             BoxShadow(
               color: Colors.black.withOpacity(0.03),
@@ -122,8 +122,8 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
             : MarkdownBody(
                 data: msg.text,
                 styleSheet: MarkdownStyleSheet(
-                  p: TextStyle(color: Colors.black87, fontSize: 13, height: 1.4),
-                  strong: const TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+                  p: TextStyle(color: isDark ? Colors.white70 : Colors.black87, fontSize: 13, height: 1.4),
+                  strong: TextStyle(color: isDark ? Colors.white : Colors.black, fontWeight: FontWeight.bold),
                 ),
               ),
       ),
@@ -155,8 +155,8 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: Colors.white,
-        border: Border(top: BorderSide(color: Colors.grey.withOpacity(0.1))),
+        color: isDark ? const Color(0xFF1E1E1E) : Colors.white,
+        border: Border(top: BorderSide(color: isDark ? Colors.white12 : Colors.grey.shade200)),
       ),
       child: Row(
         children: [
@@ -164,7 +164,7 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               decoration: BoxDecoration(
-                color: const Color(0xFFF5F7FA),
+                color: isDark ? const Color(0xFF2A2A2A) : const Color(0xFFF5F7FA),
                 borderRadius: BorderRadius.circular(12),
               ),
               child: TextField(
@@ -172,7 +172,7 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
                 style: const TextStyle(fontSize: 14),
                 decoration: InputDecoration(
                   hintText: 'Type your message...',
-                  hintStyle: TextStyle(color: Colors.black.withOpacity(0.3), fontSize: 13),
+                  hintStyle: TextStyle(color: isDark ? Colors.white38 : Colors.black26, fontSize: 13),
                   border: InputBorder.none,
                   contentPadding: const EdgeInsets.symmetric(vertical: 12),
                 ),

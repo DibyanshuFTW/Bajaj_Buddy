@@ -26,7 +26,7 @@ class _CalculatorWidgetState extends State<CalculatorWidget> {
     );
 
     return BentoCard(
-      backgroundColor: const Color(0xFFE0F7FA), // Light Cyan
+      backgroundColor: isDark ? const Color(0xFF1A2A2A) : const Color(0xFFE0F7FA), // Light Cyan
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -34,11 +34,14 @@ class _CalculatorWidgetState extends State<CalculatorWidget> {
             children: [
               const Icon(Icons.calculate_outlined, color: Color(0xFF00796B), size: 20),
               const SizedBox(width: 8),
-              Text(
-                'NCB Premium Calculator',
-                style: theme.textTheme.titleSmall?.copyWith(
-                  fontWeight: FontWeight.bold,
-                  color: const Color(0xFF004D40),
+              Expanded(
+                child: Text(
+                  'NCB Premium Calculator',
+                  style: theme.textTheme.titleSmall?.copyWith(
+                    fontWeight: FontWeight.bold,
+                    color: isDark ? const Color(0xFF80CBC4) : const Color(0xFF004D40),
+                  ),
+                  overflow: TextOverflow.ellipsis,
                 ),
               ),
             ],
@@ -49,20 +52,20 @@ class _CalculatorWidgetState extends State<CalculatorWidget> {
             children: [
               Text(
                 'Claim-Free Years:',
-                style: theme.textTheme.bodySmall?.copyWith(fontWeight: FontWeight.w500),
+                style: theme.textTheme.bodySmall?.copyWith(fontWeight: FontWeight.w500, color: isDark ? Colors.white70 : null),
               ),
               Text(
                 '${_years.toInt()}',
-                style: theme.textTheme.bodySmall?.copyWith(fontWeight: FontWeight.bold),
+                style: theme.textTheme.bodySmall?.copyWith(fontWeight: FontWeight.bold, color: isDark ? Colors.white : null),
               ),
             ],
           ),
           SliderTheme(
             data: SliderTheme.of(context).copyWith(
               trackHeight: 12,
-              activeTrackColor: Colors.black,
-              inactiveTrackColor: Colors.black.withOpacity(0.05),
-              thumbColor: Colors.white,
+              activeTrackColor: isDark ? Colors.white : Colors.black,
+              inactiveTrackColor: isDark ? Colors.white24 : Colors.black12,
+              thumbColor: isDark ? const Color(0xFF80CBC4) : Colors.white,
               thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 8),
               overlayColor: Colors.transparent,
             ),
@@ -86,12 +89,12 @@ class _CalculatorWidgetState extends State<CalculatorWidget> {
                 children: [
                   Text(
                     'NCB Discount',
-                    style: theme.textTheme.labelSmall?.copyWith(color: Colors.black54),
+                    style: theme.textTheme.labelSmall?.copyWith(color: isDark ? Colors.white54 : Colors.black54),
                   ),
                   Text(
                     '${(_years.toInt() * 5)}%',
-                    style: const TextStyle(
-                      color: Color(0xFF00796B),
+                    style: TextStyle(
+                      color: isDark ? const Color(0xFF80CBC4) : const Color(0xFF00796B),
                       fontWeight: FontWeight.bold,
                       fontSize: 16,
                     ),
@@ -103,12 +106,12 @@ class _CalculatorWidgetState extends State<CalculatorWidget> {
                 children: [
                   Text(
                     'Premium',
-                    style: theme.textTheme.labelSmall?.copyWith(color: Colors.black54),
+                    style: theme.textTheme.labelSmall?.copyWith(color: isDark ? Colors.white54 : Colors.black54),
                   ),
                   Text(
                     '₹${adjustedPremium.toStringAsFixed(0)}',
-                    style: const TextStyle(
-                      color: Colors.black,
+                    style: TextStyle(
+                      color: isDark ? Colors.white : Colors.black,
                       fontWeight: FontWeight.w900,
                       fontSize: 24,
                     ),

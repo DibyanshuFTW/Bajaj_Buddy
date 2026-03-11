@@ -432,9 +432,12 @@ class _ComparisonTableWidgetState extends State<ComparisonTableWidget> {
             children: [
               Icon(Icons.check_circle_rounded, color: Colors.green.shade600, size: 20),
               const SizedBox(width: 8),
-              Text(
-                'Bajaj has the largest network & highest claim ratio!',
-                style: TextStyle(color: Colors.green.shade800, fontWeight: FontWeight.bold, fontSize: 13),
+              Flexible(
+                child: Text(
+                  'Bajaj has the largest network & highest claim ratio!',
+                  style: TextStyle(color: Colors.green.shade800, fontWeight: FontWeight.bold, fontSize: 13),
+                  overflow: TextOverflow.ellipsis,
+                ),
               ),
             ],
           ),
@@ -449,8 +452,10 @@ class _ComparisonTableWidgetState extends State<ComparisonTableWidget> {
             color: const Color(0xFFF5F7FA),
             borderRadius: BorderRadius.circular(16),
           ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          child: Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            alignment: WrapAlignment.spaceEvenly,
             children: [
               _buildActionPill(context, Icons.directions_car_rounded, 'Compare Motor Plans'),
               _buildActionPill(context, Icons.health_and_safety_rounded, 'Explain Health Cover'),
